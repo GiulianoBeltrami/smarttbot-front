@@ -1,8 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders container with custom color', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const containerElement = screen.getByTestId('app-container');
+  expect(containerElement).toBeVisible();
+  expect(containerElement).toHaveStyle('background-color: #F5F5F5');
 });
+
+
+
+
+
