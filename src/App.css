@@ -2,6 +2,7 @@
   --titleColor:#343234;
   --lightTextColor:#888689;
   --waterGreenColor:#00B39D;
+  --negativeNumberColor:#FF4501;
 }
 
 
@@ -23,5 +24,17 @@ body {
 .lightText{
   color: var(--lightTextColor);
   font-weight: 400;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
 }
 
+.negativeNumber{
+  color: var(--negativeNumberColor);
+  font-weight: 700;
+}
+
+
+.transactionNumber{
+  font-weight: 700;
+}
