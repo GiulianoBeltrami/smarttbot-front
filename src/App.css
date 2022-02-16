@@ -34,6 +34,10 @@ body {
   font-weight: 700;
 }
 
+.badge-text{
+  font-weight: 700;
+  color: #FFFFFF;
+}
 
 .transactionNumber{
   font-weight: 700;

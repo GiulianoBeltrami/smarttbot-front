@@ -28,6 +28,8 @@ const dummyData1 = {
     ]
 }
 
-const useFetch = () => dummyData1;
+const fetchDummy = async () => {
+    return dummyData1;
+};
 
-export default useFetch;
+export default fetchDummy;

@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import useFetch from '../../Hooks/useFetch';
+import fetchDummy from '../../Hooks/fetchDummy';
 import TextFormatter from '../../helpers/TextFormatter';
+import Loader from '../Loader/Loader';
 
 const Resumo = () => {
 
-    const { results, papers } = useFetch();
+    const [data, setData] = useState();
 
-    const text = new TextFormatter(results);
+    const getData = async () => {
+        const response = await fetchDummy();
+        setData(response);
+    }
 
+    useEffect(() => {
+        getData();
+    }, [])
+
+    if(!data) {
+        return <Loader />;
+    }
+
+    const text = new TextFormatter(data.results);
     let transactions = 0;
-    papers.map((element) => transactions += element.transactionsNumber);
+    data.papers.map((element) => transactions += element.transactionsNumber);
 
     return (
         <>
@@ -24,7 +37,7 @@ const Resumo = () => {
                     <Row>
                         <Col className="text-start">
                             <p className="lightText">Resumo de movimentação</p>
-                            <p className={`fs-4 ${results > 0 ? 'positiveNumber' : 'negativeNumber'}`} data-testid="result">R${text.ChangeDotToComma()}</p>
+                            <p className={`fs-4 ${data.results > 0 ? 'positiveNumber' : 'negativeNumber'}`} data-testid="result">R${text.ChangeDotToComma()}</p>
                         </Col>
                         <Col className="text-end">
                             <p className="lightText">Total de transações realizadas</p>
@@ -40,12 +53,13 @@ const Resumo = () => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
-                        
-                        </Col>
-                        <Col>
-                        
-                        </Col>
+                        {data.papers.map((element) => (
+                            <Col className="col-6">
+                                <span className="badge badge-text" style={{backgroundColor:'var(--waterGreenColor)'}}>{element.name}</span>
+                                <hr />
+                                <span className="">{element.transactionsNumber}</span>
+                            </Col>
+                        ))}
                     </Row>
                 </Col>
             </Row>
