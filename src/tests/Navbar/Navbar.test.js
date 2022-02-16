@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react';
 import { act } from "react-dom/test-utils";
 
 test('render Análise geral text', () => {
-
     render(<Navbar />);
     const textElement = screen.getByText('Análise geral');
     expect(textElement).toBeInTheDocument();
