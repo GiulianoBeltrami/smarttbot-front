@@ -28,17 +28,17 @@ test('render Total de transações realizadas text with custom class', async () 
 
 test('render results with negative dummyData', async () => {
     await act(async () => await render(< Resumo />));
-    const textElement = screen.queryByTestId('result');
-    expect(textElement).toHaveClass('negativeNumber');
-    expect(textElement).toBeInTheDocument();
-    expect(textElement).toBeVisible();
+    const resultElement = screen.queryByTestId('result');
+    expect(resultElement).toHaveClass('negativeNumber');
+    expect(resultElement).toBeInTheDocument();
+    expect(resultElement).toBeVisible();
 });
 
 test('render transactions with elements', async () => {
     await act(async () => await render(< Resumo />));
-    const textElement = screen.queryByTestId('transactions');
-    expect(textElement).toBeInTheDocument();
-    expect(textElement).toBeVisible();
+    const transactionsElement = screen.queryByTestId('transactions');
+    expect(transactionsElement).toBeInTheDocument();
+    expect(transactionsElement).toBeVisible();
 });
 
 test('render Papéis negociados text with custom class', async () => {
@@ -60,8 +60,8 @@ test('render badge com nome do papel', async () => {
 
 test('render trasaction-number', async () => {
     await act(async () => await render(< Resumo />));
-    const textElement = screen.getAllByTestId('trasaction-number');
-    expect(textElement).toBeTruthy();
-    expect(textElement).toBeDefined();
+    const transactioNumberElement = screen.getAllByTestId('trasaction-number');
+    expect(transactioNumberElement).toBeTruthy();
+    expect(transactioNumberElement).toBeDefined();
 });
 

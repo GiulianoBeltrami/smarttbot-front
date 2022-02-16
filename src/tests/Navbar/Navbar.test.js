@@ -19,8 +19,8 @@ test('render Principal text with syles', () => {
 
 test('render image on the left of navbar', () => {
     render(<Navbar />);
-    const textElement = screen.queryByTestId("barchart-icon");
-    expect(textElement).toBeInTheDocument();
-    expect(textElement).toBeVisible();
-    expect(textElement).toHaveAttribute('color');
+    const iconImageElement = screen.queryByTestId("barchart-icon");
+    expect(iconImageElement).toBeInTheDocument();
+    expect(iconImageElement).toBeVisible();
+    expect(iconImageElement).toHaveAttribute('color');
 });

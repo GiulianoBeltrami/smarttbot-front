@@ -52,7 +52,7 @@ const Resumo = () => {
                             <p className="lightText">Papéis negociados</p>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className="py-3">
                         {data.papers.map((element,index) => (
                             <Col className="col-12 col-sm-6 col-md-6" key={index}>
                                 <Row>
