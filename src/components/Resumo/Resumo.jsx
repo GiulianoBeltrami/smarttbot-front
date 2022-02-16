@@ -17,7 +17,7 @@ const Resumo = () => {
         getData();
     }, [])
 
-    if(!data) {
+    if (!data) {
         return <Loader />;
     }
 
@@ -55,9 +55,22 @@ const Resumo = () => {
                     <Row>
                         {data.papers.map((element) => (
                             <Col className="col-6">
-                                <span className="badge badge-text" style={{backgroundColor:'var(--waterGreenColor)'}}>{element.name}</span>
-                                <hr />
-                                <span className="">{element.transactionsNumber}</span>
+                                <Row>
+                                    <Col className="col-1">
+                                        <span className="badge badge-text" style={{ backgroundColor: 'var(--waterGreenColor)' }}>{element.name}</span>
+                                    </Col>
+                                    <Col className="col-8">
+                                        <hr style={{ backgroundColor: '#C5C5C5', borderTop: '1px dashed' }} />
+                                    </Col>
+                                    <Col className="col-3 p-0">
+                                        <span className="text-end lightText">
+                                            <span className="transactionNumber" data-testid="trasaction-number" style={{color: '#000000'}}>
+                                                {element.transactionsNumber}
+                                            </span>
+                                            transações
+                                        </span>
+                                    </Col>
+                                </Row>
                             </Col>
                         ))}
                     </Row>
