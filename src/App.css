@@ -7,6 +7,8 @@
   --backDropColor:rgb(0, 179, 158);
   --buttonsColor:#E3E2E3;
   --buttonTextColor:#6A6C72;
+  --cardStatusTag: #5F5D60;
+
 }
 
 
@@ -136,4 +138,14 @@ body {
 .cardTitle {
   font-weight:700;
   color: var(--titleColor);
+}
+
+.robotCardTag{
+  border: 1px solid var(--buttonsColor);
+}
+
+.cardStatusNumber{
+  font-weight:700;
+  color: var(--cardStatusTag);
+  font-size:32px;
 }

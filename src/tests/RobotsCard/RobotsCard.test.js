@@ -60,3 +60,8 @@ test('show robot execution status Em execução', async () => {
     expect(textElement).toBeInTheDocument();
 })
 
+test('show robots status on card', async () => {
+    render(<RobotsCard data={testData} />);
+    const robotStatusOnCard = await screen.queryByTestId("cardRobotStatus");
+    expect(robotStatusOnCard).toBeInTheDocument();
+})
