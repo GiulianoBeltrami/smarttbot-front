@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`close modal correctly 1`] = `<div />`;
+
+exports[`form with valid inputs 1`] = `<div />`;
+
+exports[`render Adicionar novo Robô text 1`] = `<div />`;
+
+exports[`show modal correctly 1`] = `<div />`;

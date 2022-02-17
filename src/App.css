@@ -4,6 +4,9 @@
   --waterGreenColor:#00B39D;
   --negativeNumberColor:#FF4501;
   --rowsColor:#FFFFFF;
+  --backDropColor:rgb(0, 179, 158);
+  --buttonsColor:#E3E2E3;
+  --buttonTextColor:#6A6C72;
 }
 
 
@@ -35,6 +38,11 @@ body {
   font-weight: 700;
 }
 
+.positiveNumber{
+  color: var(--waterGreenColor);
+  font-weight: 700;
+}
+
 .badge-text{
   font-weight: 700;
   color: #FFFFFF;
@@ -46,7 +54,78 @@ body {
 
 .newBotButton {
   background-color: var(--row-color);
-  border-color:#E3E2E3;
+  border-color:var(--buttonsColor);
   width:75px;
   height:70px;
 }
+
+.newBotButton:hover,
+.newBotButton:focus,
+.newBotButton:active:focus,
+.newBotButton.active:focus,
+.newBotButton.focus,
+.newBotButton:active.focus,
+.newBotButton.active.focus{
+  background-color: var(--row-color);
+  border-color:var(--buttonsColor);
+}
+
+.backDropColor {
+  background-color: var(--backDropColor);
+}
+
+.formLabelText{
+  color: var(--titleColor);
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.strategyButton{
+  background-color:var(--rowsColor);
+  color: var(--buttonTextColor);
+  font-size:16px;
+  font-weight: normal;
+  border-color: var(--buttonsColor);
+}
+
+.strategyButton:hover,
+.strategyButton:focus,
+.strategyButton:active:focus,
+.strategyButton.active:focus,
+.strategyButton.focus,
+.strategyButton:active.focus,
+.strategyButton.active.focus{
+  background-color: #FF4501;
+  border-color:#FF4501;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.modalCancelButton,
+.modalCancelButton:hover,
+.modalCancelButton:focus,
+.modalCancelButton:active:focus,
+.modalCancelButton.active:focus,
+.modalCancelButton.focus,
+.modalCancelButton:active.focus,
+.modalCancelButton.active.focus{
+  background-color: var(--rowsColor);
+  font-size: 13px;
+  color:var(--buttonTextColor);
+  border-color: var(--buttonsColor);
+}
+
+.modalCreateButton,
+.modalCreateButton:hover,
+.modalCreateButton:focus,
+.modalCreateButton:active:focus,
+.modalCreateButton.active:focus,
+.modalCreateButton.focus,
+.modalCreateButton:active.focus,
+.modalCreateButton.active.focus{
+  background-color: var(--waterGreenColor);
+  font-size: 13px;
+  color:var(--rowsColor);
+  border-color: var(--waterGreenColor);
+}
+

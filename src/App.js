@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Resumo from './components/Resumo/Resumo';
 import NewRobots from './components/NewRobots/NewRobots';
+import ModalRobot from './components/ModalRobot/ModalRobot';
 
 function App() {
   return (
