@@ -1,11 +1,15 @@
 import React from 'react'
 import { Modal, Button, Row, Col, Container, Form } from 'react-bootstrap';
+import { useGetStrategiesQuery } from '../../services/smarttbotApi';
+import Loader from '../Loader/Loader';
 
-export const ModalRobot = ({ show, handleClose, onSubmit }) => {
+export const ModalRobot = ({ show, handleClose, onSubmit, data }) => {
 
+    const strategies = data?.data;
+    
     return (
         <>
-            <Modal backdropClassName="backDropColor" size="lg" show={show} onHide={handleClose}>
+            <Modal backdropClassName="backDropColor" dialogClassName="modalWidth" size="lg" show={show} onHide={handleClose}>
                 <Modal.Header className="pb-0" style={{ borderBottom: '0' }} closeButton>
                     <p className="titleText" style={{ fontSize: '16px' }}>Adicionar novo Robô</p>
                 </Modal.Header>
@@ -35,12 +39,11 @@ export const ModalRobot = ({ show, handleClose, onSubmit }) => {
                                         </Col>
                                         <Col className="col-12">
                                             <div className="d-grid gap-2">
-                                                <Button className="strategyButton text-start p-3" size="lg">
-                                                    Tangran
-                                                </Button>
-                                                <Button className="strategyButton text-start p-3" size="lg">
-                                                    Price Action
-                                                </Button>
+                                                {strategies.map((element, index) => (
+                                                    <Button className="strategyButton text-start p-3" key={index} size="lg">
+                                                        {element.name}
+                                                    </Button>
+                                                ))}
                                             </div>
                                         </Col>
                                     </Row>

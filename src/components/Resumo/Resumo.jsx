@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import fetchDummy from '../../Hooks/fetchDummy';
 import TextFormatter from '../../helpers/TextFormatter';
-import Loader from '../Loader/Loader';
-import { useGetOverviewQuery } from '../../services/smarttbotApi';
 
-const Resumo = () => {
-    const { data, isFetching } = useGetOverviewQuery();
+const Resumo = ({data}) => {
 
-    if (isFetching) {
-        return <Loader />;
-    }
     const { moviment_summary, papers } = data?.data;
 
     const text = new TextFormatter(moviment_summary);

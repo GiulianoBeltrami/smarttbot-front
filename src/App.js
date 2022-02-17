@@ -3,14 +3,26 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Resumo from './components/Resumo/Resumo';
 import NewRobots from './components/NewRobots/NewRobots';
-import ModalRobot from './components/ModalRobot/ModalRobot';
+import Loader from './components/Loader/Loader';
+import RobotsCard from './components/RobotsCard/RobotsCard';
+import { useGetOverviewQuery, useGetStrategiesQuery, useGetAllRobotsQuery } from './services/smarttbotApi';
 
 function App() {
+
+  const { data: overview, isFetching: isFetchingOverview } = useGetOverviewQuery();
+  const { data: strategies, isFetching: isFetchingStrategies } = useGetStrategiesQuery();
+  const { data: allRobots, isFetching: isFetchingAllRobots } = useGetAllRobotsQuery();
+
+  if (isFetchingOverview || isFetchingStrategies || isFetchingAllRobots) {
+    return <Loader />;
+  }
+
   return (
     <Container fluid data-testid="app-container" style={{ backgroundColor: '#F5F5F5' }} className="px-4 py-3">
       <Navbar />
-      <Resumo />
-      <NewRobots />
+      <Resumo data={overview} />
+      <NewRobots data={strategies} />
+      <RobotsCard data={allRobots}/>
     </Container>
   );
 }

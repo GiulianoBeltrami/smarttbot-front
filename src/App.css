@@ -129,3 +129,11 @@ body {
   border-color: var(--waterGreenColor);
 }
 
+.modalWidth{
+  width: 40%;
+}
+
+.cardTitle {
+  font-weight:700;
+  color: var(--titleColor);
+}

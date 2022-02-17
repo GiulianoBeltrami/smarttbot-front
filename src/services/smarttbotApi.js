@@ -12,12 +12,12 @@ export const smarttbotApi = createApi({
         getOverview: builder.query({
             query: () => createRequest(`/api/v1/robot/overview`),
         }),
-        // getCryptoDetails: builder.query({
-        //     query: (coinId) => createRequest(`/api/v1/`),
-        // }),
-        // getCryptoHistory: builder.query({
-        //     query: ({ coinId, timePeriod }) => createRequest(`/coin/${coinId}/history?timePeriod=${timePeriod}`),
-        // }),
+        getStrategies: builder.query({
+            query: () => createRequest(`/api/v1/strategy`),
+        }),
+        getAllRobots: builder.query({
+            query: () => createRequest(`/api/v1/robot?order_field=created_at&order_type=descending`),
+        }),
         // getCryptoExchanges: builder.query({
         //     query: () => createRequest(`/exchanges`),
         // }),
@@ -26,4 +26,6 @@ export const smarttbotApi = createApi({
 
 export const {
     useGetOverviewQuery,
+    useGetStrategiesQuery,
+    useGetAllRobotsQuery
 } = smarttbotApi;
