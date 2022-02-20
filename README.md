@@ -1,7 +1,7 @@
 # Tecnologias utilizadas
-Desenvolvimento : React, redux e bootstrap
-Testes: testing-library(jest)
-Deploy: netlify
+Desenvolvimento : React, redux e bootstrap<br />
+Testes: testing-library(jest)<br />
+Deploy: netlify<br />
 # Como executar
 Baixar o código fonte no github, navergar até a pasta do aplicativo e digitar no cmd: npm start
 
