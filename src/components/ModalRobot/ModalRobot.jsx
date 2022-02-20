@@ -60,7 +60,7 @@ export const ModalRobot = ({ show, handleClose, onSubmit, data, inputs,setInputs
                                     </Row>
                                     <Row className="mb-4">
                                         <Col className="col-6 text-start">
-                                            <Button data-testid="closeModal" className="modalCancelButton">
+                                            <Button  onClick={handleClose} data-testid="closeModal" className="modalCancelButton">
                                                 Cancelar
                                             </Button>
                                         </Col>
