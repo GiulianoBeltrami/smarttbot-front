@@ -6,6 +6,7 @@ import NewRobots from './components/NewRobots/NewRobots';
 import Loader from './components/Loader/Loader';
 import RobotsCard from './components/RobotsCard/RobotsCard';
 import { useGetOverviewQuery, useGetStrategiesQuery, useGetAllRobotsQuery } from './services/smarttbotApi';
+import React from 'react';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
     return <Loader />;
   }
 
+  console.log(allRobots)
   return (
     <Container fluid data-testid="app-container" style={{ backgroundColor: '#F5F5F5' }} className="px-4 py-3">
       <Navbar />

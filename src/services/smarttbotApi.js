@@ -16,11 +16,8 @@ export const smarttbotApi = createApi({
             query: () => createRequest(`/api/v1/strategy`),
         }),
         getAllRobots: builder.query({
-            query: () => createRequest(`/api/v1/robot?order_field=created_at&order_type=descending`),
+            query: () => createRequest(`/api/v1/robot`),
         }),
-        // getCryptoExchanges: builder.query({
-        //     query: () => createRequest(`/exchanges`),
-        // }),
     })
 });
 

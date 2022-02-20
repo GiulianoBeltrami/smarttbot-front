@@ -2,13 +2,13 @@
   --titleColor:#343234;
   --lightTextColor:#888689;
   --waterGreenColor:#00B39D;
-  --negativeNumberColor:#FF4501;
+  --negativeNumberColor:#ff4501e6;
   --rowsColor:#FFFFFF;
   --backDropColor:rgb(0, 179, 158);
   --buttonsColor:#E3E2E3;
   --buttonTextColor:#6A6C72;
   --cardStatusTag: #5F5D60;
-
+  --cardPaperColor: #959AA2;
 }
 
 
@@ -131,9 +131,12 @@ body {
   border-color: var(--waterGreenColor);
 }
 
-.modalWidth{
-  width: 40%;
+@media (min-width: 1024px){
+  .modalWidth{
+    width: 40%;
+  }
 }
+
 
 .cardTitle {
   font-weight:700;
@@ -148,4 +151,22 @@ body {
   font-weight:700;
   color: var(--cardStatusTag);
   font-size:32px;
+}
+
+.tradesOnTheDay{
+  font-weight:700;
+  color: var(--cardStatusTag);
+  font-size:20px;
+}
+
+.cardPositiveNumber{
+  color: var(--waterGreenColor);
+  fontWeight: 400;
+  fontSize: 14px;
+}
+
+.cardNegativeNumber{
+  color: var(--negativeNumberColor);
+  fontWeight: 400;
+  fontSize: 14px;
 }

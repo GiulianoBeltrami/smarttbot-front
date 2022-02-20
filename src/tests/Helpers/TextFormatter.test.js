@@ -1,4 +1,4 @@
-import TextFormater from './TextFormatter';
+import TextFormater from '../../helpers/TextFormatter';
 
 test('remove dot and change to comma', () => {
     const text = new TextFormater('-200.00');

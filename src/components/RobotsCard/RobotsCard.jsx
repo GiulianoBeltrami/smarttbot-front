@@ -1,101 +1,134 @@
-import React from 'react';
-import { Row, Col, Card } from 'react-bootstrap';
+// import React from 'react';
+import { Row, Col, Card, Container } from 'react-bootstrap';
 import { BsFillCircleFill } from "react-icons/bs";
+import { GoTriangleUp } from "react-icons/go";
+import { GoTriangleDown } from "react-icons/go";
+import { BsFillExclamationCircleFill } from "react-icons/bs";
+import { BsChevronDown } from "react-icons/bs";
+import ObjectFieldsValidator from '../../helpers/ObjectFieldsValidator';
+import TextFormatter from '../../helpers/TextFormatter';
+import ObjectDateHandler from '../../helpers/ObjectDateHandler';
+import moment from 'moment';
 
 const RobotsCard = ({ data }) => {
 
-    const testBot = [{
-        created_at: "2020-07-27 00:10:27",
-        daily_balance: 4.45,
-        id: 1648753,
-        initial_capital: 67692.5,
-        last_paper: {
-            "robot_id": 1648757,
-            "paper": "BOVA11",
-            "position": 77,
-            "type": 0,
-            "paper_value": 72048.95,
-            "profit": 74.81,
-            "created_at": "2020-08-06 10:48:13",
-            "id": 125001
-        },
-        mode: 0,
-        movimentations: [],
-        number_trades: 506,
-        running: 0,
-        simulation: 1,
-        stock_codes: "RAIL3",
-        strategy: "Hórus",
-        title: "Eu Metus LLC",
-        type: "Normal",
-        updated_at: "2020-08-04 18:04:51"
-    }]
-
     const robots = data?.data;
+    const reverseRobots = [...robots].reverse();
     return (
-        <Row>
-            {testBot.map((element, index) => (
-                <Card className="col-3 row-color mt-4 pt-2 ps-2 pe-2" key={index}>
-                    <Row>
-                        <Col className="col-6">
-                            <span className="cardTitle">{element.title}
-                            </span>
-                        </Col>
-                        <Col className="col-6 text-center">
-                            <BsFillCircleFill className="me-1" size={10} color={`${element.mode === 1 ? 'var(--waterGreenColor)' : 'red'}`} />
-                            <span>
-                                {element.mode === 1 ? 'Em execução' : 'Parado'}
-                            </span>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <span className="lightText">#{element.id}</span>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <span className="robotCardTag lightText me-1 px-1">{element.strategy}</span>
-                            <span className="robotCardTag lightText me-1 px-1">{element.stock_codes}</span>
-                            <span className="robotCardTag lightText me-1 px-1">{element.type}</span>
-                        </Col>
-                    </Row>
-                    <Row data-testid="cardRobotStatus" className="robotCardTag m-2">
-                        <Col>
-                            <Row className="align-items-center">
-                                <Col className="col-4">
-                                    <p className="cardStatusNumber text-start m-0 ps-2">{element.last_paper.position}</p>
-                                </Col>
-                                <Col className="col-5">
-                                    <Row>
-                                        <Col>
-                                            <p>{element.last_paper.paper}</p>
+        <Row className="row-cols-1 row-cols-md-2 row-cols-lg-4" >
+            {reverseRobots.map((robot, index) => {
+                const daily_balance = new TextFormatter(robot.daily_balance);
+
+                const today = moment();
+                const date = new ObjectDateHandler(robot.movimentations, today);
+                const filteredDate = date.findDate();
+
+                let count = 0;
+                filteredDate.map((obj, index) => count+= obj.value);
+
+                return (
+                        <Col className="gap-3">
+                            <Card className=" row-color mt-4 pt-2 " key={index}>
+                                <Container>
+                                    <Row className="px-2">
+                                        <Col className="col-7 p-0">
+                                            <span className="cardTitle">{robot.title}
+                                            </span>
+                                        </Col>
+                                        <Col className="col-5 text-end">
+                                            <BsFillCircleFill className="me-1" size={10} color={`${robot.mode === 1 ? 'var(--waterGreenColor)' : 'red'}`} />
+                                            <span style={{ color: 'var(--lightTextColor)', fontWeight: 'normal', fontSize: '14px' }}>
+                                                {robot.mode === 1 ? 'Em execução' : 'Parado'}
+                                            </span>
                                         </Col>
                                     </Row>
-                                    <Row>
-                                        <Col>
-                                            <p>Compra</p>
+                                    <Row className="px-2">
+                                        <Col className="p-0">
+                                            <span className="lightText">#{robot.id}</span>
                                         </Col>
                                     </Row>
-                                </Col>
-                                <Col className="col-3">
-                                    <Row>
+                                    <Row className="px-2">
+                                        <Col className="p-0">
+                                            <span className="robotCardTag lightText me-1 px-3">{robot.strategy}</span>
+                                            <span className="robotCardTag lightText me-1 px-3">{robot.stock_codes}</span>
+                                            <span className="robotCardTag lightText me-1 px-3">{robot.type}</span>
+                                        </Col>
+                                    </Row>
+                                    <Row data-testid="cardRobotStatus" className="robotCardTag  py-2 my-2">
                                         <Col>
+                                            <Row className="align-items-center p-0 m-0">
+                                                <Col className="col-2 p-0">
+                                                    <p className="cardStatusNumber text-center m-0">
+                                                        {robot.last_paper && robot.last_paper.position ? robot.last_paper.position : <BsFillExclamationCircleFill color="var(--negativeNumberColor)" />}
+                                                    </p>
+                                                </Col>
+                                                <Col className="col-5 p-0">
+                                                    <Row>
+                                                        <Col>
+                                                            <p className="titleText text-start m-0" style={{ color: 'var(--cardPaperColor)' }}>
+                                                                {robot.last_paper && robot.last_paper.paper ? robot.last_paper.paper : <BsFillExclamationCircleFill size={12} color="var(--negativeNumberColor)" />}
+                                                            </p>
+                                                        </Col>
+                                                    </Row>
+                                                    <Row>
+                                                        <Col>
+                                                            <p className="m-0" style={{ fontWeight: 'normal', fontSize: '12px' }}>Compra</p>
+                                                        </Col>
+                                                    </Row>
+                                                </Col>
+                                                <Col className="col-5 p-0">
+                                                    <Row>
+                                                        <Col>
+                                                            <p className="titleText text-start m-0" style={{ color: '#B1B0B2', fontWeight: '400', fontSize: '12px' }}>
+                                                                {robot?.last_paper?.paper_value ? robot?.last_paper?.paper_value : "No data to display" }
+                                                            </p>
+                                                        </Col>
+                                                    </Row>
+                                                    <Row>
+                                                        <Col>
+                                                            <span className={`m-0 ${robot?.last_paper?.profit <= 0 ? 'cardNegativeNumber' : 'cardPositiveNumber'}`}>
+                                                                {robot?.last_paper?.profit <= 0 ? <GoTriangleDown data-testid="triangleDown" color="var(--negativeNumberColor)" /> : <GoTriangleUp data-testid="triangleUp" color="var(--waterGreenColor)" />}
+                                                                R${robot?.last_paper?.profit ? robot?.last_paper?.profit : "0"}
+                                                            </span>
+                                                        </Col>
+                                                    </Row>
+                                                </Col>
+                                            </Row>
+                                        </Col>
+                                    </Row>
+                                    <Row className="px-2">
+                                        <Col>
+                                            <Row>
+                                                <Col className="col-6 text-start">
+                                                    <span className="lightText ">
+                                                        Saldo diário <BsChevronDown className="ms-1" />
+                                                    </span>
+                                                </Col>
+                                                <Col className="col-6 text-end">
+                                                    <span className="lightText ">
+                                                        Trades no dia
+                                                    </span>
+                                                </Col>
+                                            </Row>
+                                            <Row></Row>
+                                        </Col>
+                                    </Row>
+                                    <Row className="px-2">
+                                        <Col className="col-6">
+                                            <p className={`fs-4 ${robot.daily_balance >= 0 ? 'positiveNumber' : 'negativeNumber'}`}>R${daily_balance.ChangeDotToComma()}</p>
 
                                         </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>
+                                        <Col className="col-6 text-end">
+                                            <p className="tradesOnTheDay">
+                                                {filteredDate !== [] ? `${count}` : '0'}
+                                            </p>
                                         </Col>
                                     </Row>
-                                </Col>
-                            </Row>
+                                </Container>
+                            </Card>
                         </Col>
-                    </Row>
-                    <Row></Row>
-                    <Row></Row>
-                </Card>
-            ))}
+                )
+            })}
         </Row>
     )
 }

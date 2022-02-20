@@ -2,17 +2,26 @@ import React from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import logo from '../../assets/smartt.png';
 import { ModalRobot } from '../../components/ModalRobot/ModalRobot';
-import { useGetStrategiesQuery } from '../../services/smarttbotApi';
-import Loader from '../Loader/Loader';
 
-const NewRobots = ({data}) => {
+const NewRobots = ({ data }) => {
 
     const [showModal, setShowModal] = React.useState(false);
+    const [inputs, setInputs] = React.useState({ "title": "", "initial_capital": "", "strategy_id": "", "mode": 0, "simulation": 0, "broker_id": 1 });
 
     const strategies = data?.data;
 
     const handleShow = () => setShowModal(true);
-    const handleClose = () => setShowModal(false)
+    const handleClose = () => setShowModal(false);
+
+    const onSubmit = async () => {
+        return fetch("https://api-front-test.k8s.smarttbot.com/api/v1/robot", {
+            method: "POST",
+            body: JSON.stringify(inputs),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
 
     return (
         <>
@@ -22,7 +31,7 @@ const NewRobots = ({data}) => {
                         <Button data-testid="NewRobotButton" onClick={handleShow} className="p-2.5 newBotButton">
                             <img data-testid="logo" src={logo} alt="logo" style={{ width: '100%', height: '100%' }} />
                         </Button>
-                        <ModalRobot show={showModal} data={data} handleClose={handleClose} />
+                        <ModalRobot show={showModal} data={data} handleClose={handleClose} onSubmit={onSubmit} inputs={inputs} setInputs={setInputs} />
                     </Col>
                     <Col className="col-8 col-sm-10 col-md-10 col-lg-11 text-start p-0">
                         <p className="titleText m-0" style={{ fontSize: '18px' }}>Adicionar novo robô</p>
